@@ -8,6 +8,18 @@ module.exports = {
     })},
 
     AddTodo : (req,res) => {
+        const data = req.body;        
+
+        const newTodo = {
+            id : Todos.length+1,
+            value : data.value
+        }
+
+        Todos.push(newTodo)
+        res.status(200).json({
+            message : "berhasil menambah data",
+            todo : Todos,
+    })
     },
 
     getTodoByID : (req,res) => {
