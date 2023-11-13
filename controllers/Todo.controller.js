@@ -21,7 +21,7 @@ module.exports = {
 
     res.status(201).json({
       message: "berhasil menambahkan data todos",
-      todos: data,
+      todos: Todo,
     });
   },
 
