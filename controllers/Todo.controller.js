@@ -15,8 +15,9 @@ module.exports = {
   },
 
   AddTodo: async (req, res) => {
+    const {id} = req.params
     const data = req.body;
-    await Todo.create(data);
+    await Todo.create({userID : id, value : data.value, status :data.status});
 
     res.status(201).json({
       message: "berhasil menambahkan data todos",

@@ -6,6 +6,7 @@ module.exports = {
     return queryInterface.bulkInsert('Todos', [{
       value : "belajar react",
       status: false,
+      userID: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

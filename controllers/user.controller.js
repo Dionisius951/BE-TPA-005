@@ -14,16 +14,6 @@ module.exports = {
     }
   },
 
-  addUser: async (req, res) => {
-    const data = req.body;
-    await User.create(data);
-
-    res.status(201).json({
-      message: "berhasil menambahkan data user",
-      user: data,
-    });
-  },
-
   getUserByID: async (req, res) => {
     const { id } = req.params;
     const data = await User.findAll({where:{id : id}});
