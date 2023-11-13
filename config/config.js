@@ -4,6 +4,7 @@ module.exports = {
     password: "Xks5?W5$fz$u?9q",
     database: "freedb_todo-list-app",
     host: "sql.freedb.tech",
+    port : 3306,
     dialect: "mysql"
   },
   test: {
@@ -11,6 +12,7 @@ module.exports = {
     password: "Xks5?W5$fz$u?9q",
     database: "freedb_todo-list-app",
     host: "sql.freedb.tech",
+    port : 3306,
     dialect: "mysql"
   },
   production: {
@@ -18,6 +20,7 @@ module.exports = {
     password: "Xks5?W5$fz$u?9q",
     database: "freedb_todo-list-app",
     host: "sql.freedb.tech",
+    port : 3306,
     dialect: "mysql"
   }
 }

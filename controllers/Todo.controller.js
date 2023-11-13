@@ -14,55 +14,60 @@ module.exports = {
     }
   },
 
-  // AddTodo: (req, res) => {
-  //   const data = req.body;
+  AddTodo: async (req, res) => {
+    const data = req.body;
+    await Todo.create(data);
 
-  //   const newTodo = {
-  //     id: Todos.length + 1,
-  //     value: data.value,
-  //   };
+    res.status(201).json({
+      message: "berhasil menambahkan data todos",
+      todos: data,
+    });
+  },
 
-  //   Todos.push(newTodo);
-  //   res.status(200).json({
-  //     message: "berhasil menambah data",
-  //     todo: Todos,
-  //   });
-  // },
+  getTodoByID: async (req, res) => {
+    const { id } = req.params;
+    const data = await Todo.findAll({where:{id : id}});
 
-  // getTodoByID: (req, res) => {
-  //   const { id } = req.params;
-  //   const todo = Todos.find((todo) => todo.id == id);
+    if (data.length === 0){
+      res.status(400).json({
+        message: `todo dengan id : ${id} tidak ditemukan`
+      })
+    }
 
-  //   res.status(200).json({
-  //     message: "Berhasil mendapat data todos",
-  //     todos: todo,
-  //   });
-  // },
+    res.status(200).json({
+      message: `Berhasil mendapat data todos dengan id : ${id}`,
+      todos: data,
+    });
+  },
 
-  // EditTodoByID : (req, res) => {
-  //   const  { id }  = req.params;
-  //   const updateValue = req.body;
+  EditTodoByID : async (req, res) => {
+    const  { id }  = req.params;
 
-  //   const todo = Todos.map((todo) => {
-  //     if (todo.id == id) {
-  //       return { ...todo, value : updateValue.value };
-  //     }
-  //     return todo
-  //   });
-  //   res.status(201).json({
-  //     message: "Berhasil mengedit todos",
-  //     todos: todo,
-  //   });
-  // },
+    await Todo.update({ value: req.body.value }, {
+      where: {
+        id: id
+      }
+    });
 
-  // DeleteTodoByID: (req, res) => {
-  //   const  {id}  = req.params;
 
-  //   const deleteTodo = Todos.filter(todo =>  todo.id != id);
+    res.status(201).json({
+      message: `Berhasil mengedit todo dengan id ${id}`,
+      todos : Todo
+    });
+  },
 
-  //   res.status(200).json({
-  //     message: "Berhasil mendapat data todos",
-  //     todos: deleteTodo,
-  //   });
-  // },
+  DeleteTodoByID: async (req, res) => {
+    const  {id}  = req.params;
+
+    await Todo.destroy({
+      where: {
+        id: id
+      }
+    });
+
+    res.status(200).json({
+      message: `Berhasil menghapus data todo dengan id ${id}`,
+      todos: Todo,
+    });
+  },
 };
