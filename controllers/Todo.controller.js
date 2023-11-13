@@ -70,4 +70,16 @@ module.exports = {
       todos: Todo,
     });
   },
+
+  deleteAllTodos: async (req, res) => {
+
+    await Todo.destroy({
+      truncate: true
+    });
+
+    res.status(200).json({
+      message: `Berhasil menghapus semua data todos`,
+      todos: Todo,
+    });
+  },
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllTodo, AddTodo, getTodoByID, EditTodoByID, DeleteTodoByID } = require('../controllers/Todo.controller');
+const { getAllTodo, AddTodo, getTodoByID, EditTodoByID, DeleteTodoByID, deleteAllTodos } = require('../controllers/Todo.controller');
 const route = express.Router();
 
 
@@ -8,6 +8,7 @@ route.get('/:id', getTodoByID)
 route.post('/', AddTodo)
 route.put('/:id', EditTodoByID)
 route.delete('/:id', DeleteTodoByID)
+route.delete('/', deleteAllTodos)
 
 
 module.exports = route
